@@ -15,8 +15,36 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
+    # API endpoints - all apps
+    path('api/', include([
+        # Core configuration (materials, machine types, print settings)
+        path('core/', include('apps.core.urls')),
+        
+        # Order management
+        path('orders/', include('apps.orders.urls')),
+        
+        # Production (print jobs, scenes, queue)
+        path('production/', include('apps.production.urls')),
+        
+        # Printer fleet management
+        path('fleet/', include('apps.fleet.urls')),
+        
+        # Batching system
+        path('batching/', include('apps.batching.urls')),
+        
+        # Quality control
+        path('qc/', include('apps.qc.urls')),
+        
+        # Shipping
+        path('shipping/', include('apps.shipping.urls')),
+        
+        # Employee management
+        path('employees/', include('apps.employees.urls')),
+    ])),
 ]
