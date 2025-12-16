@@ -6,6 +6,6 @@ router = DefaultRouter()
 router.register(r'print-batch', PrintBatchViewSet)
 router.register(r'batch-item', BatchItemViewSet)
 
-url_patterns = [
+urlpatterns = [
     path('', include(router.urls))
 ]

@@ -72,6 +72,10 @@ class PrintJob(models.Model):
     queued_at = models.DateTimeField(null=True)
     started_at = models.DateTimeField(null=True)
     completed_at = models.DateTimeField(null=True)
+
+    progress_percent = models.FloatField(default=0.0)
+    current_layer = models.IntegerField(default=0)
+    total_layers = models.IntegerField(null=True)
     
     # Who worked on it
     assigned_to = models.ForeignKey(

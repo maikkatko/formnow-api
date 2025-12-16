@@ -6,6 +6,6 @@ from .views import EmployeeViewSet
 router = DefaultRouter()
 router.register(r'employees', EmployeeViewSet)
 
-url_patterns = [
+urlpatterns = [
     path('', include(router.urls))
 ]
