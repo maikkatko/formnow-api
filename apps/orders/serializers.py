@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 from .models import Order, OrderItem
-from core.serializers import MaterialSerializer
+from apps.core.serializers import MaterialSerializer
 
 
 class OrderItemSerializer(serializers.ModelSerializer):

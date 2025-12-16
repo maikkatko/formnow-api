@@ -46,5 +46,8 @@ urlpatterns = [
         
         # Employee management
         path('employees/', include('apps.employees.urls')),
+
+        # Employee management
+        path('dashboard/', include('apps.dashboard.urls')),
     ])),
 ]

@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 from .models import Printer, CartridgeData, PrinterMaintenanceLog
-from core.serializers import MachineTypeSerializer, MaterialSerializer
+from apps.core.serializers import MachineTypeSerializer, MaterialSerializer
 
 
 class CartridgeDataSerializer(serializers.ModelSerializer):
