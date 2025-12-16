@@ -15,8 +15,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.urls import include, path
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from rest_framework import permissions
 
+from apps.employees.models import Permission
+
+def health_check(request):
+    return JsonResponse({"status": "ok"}, status=200)
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="FormNow API",
+        default_version='v1',
+        description="API for FormNow backend",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@formnow.com"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -50,4 +72,8 @@ urlpatterns = [
         # Employee management
         path('dashboard/', include('apps.dashboard.urls')),
     ])),
+
+      path('', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),  # API docs at root
+
+      path('health/', health_check, name='health_check')
 ]

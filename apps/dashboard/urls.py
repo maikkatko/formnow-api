@@ -4,9 +4,9 @@ from django.urls import path, include
 from .views import DashboardStatsViewSet, ProductionMetricsViewSet, ProductionQueueViewSet 
 
 router = DefaultRouter()
-router.register(r'dashboard-stats', DashboardStatsViewSet)
-router.register(r'production-queue', ProductionQueueViewSet)
-router.register(r'production-metrics', ProductionMetricsViewSet)
+router.register(r'dashboard-stats', DashboardStatsViewSet, basename='dashboard-stats')
+router.register(r'production-queue', ProductionQueueViewSet, basename='production-queue')
+router.register(r'production-metrics', ProductionMetricsViewSet, basename='production-metrics')
 
 urlpatterns = [
     path('', include(router.urls))

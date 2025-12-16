@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from django.db.models import Sum, Avg
 from django.utils import timezone
 from rest_framework.response import Response
-from rest_framework import viewsets, serializers
+from rest_framework import viewsets
 
 from apps.orders.models import Order
 from apps.production.models import PrintJob

@@ -67,14 +67,18 @@ class ShipmentSerializer(serializers.ModelSerializer):
         # Optional: Clean up tracking number (remove spaces)
         return value.strip().upper() if value else value
     
-class ShipmentDetailSerializer(ShipmentSerializer):
+class ShipmentDetailSerializer(serializers.ModelSerializer):
     # Reuse fields from parent, just add the nested items
     items = ShipmentItemSerializer(many=True, read_only=True)
-    
     shipping_address = serializers.SerializerMethodField()
 
-    class Meta(ShipmentSerializer.Meta):
-        fields = ShipmentSerializer.Meta.fields + ['items']
-        
-    # def get_shipping_address(self, obj):
-    #     return ...
+    class Meta:
+        model = Shipment
+        fields = ['id', 'order', 'status', 'carrier', 'tracking_number', 'weight_oz', 'packed_by', 'packed_at', 'shipped_at', 'items', 'shipping_address']
+
+    def get_shipping_address(self, obj):
+        # Assuming the Shipment model has a `shipping_address` field, or related address model
+        # This could be a direct field or a ForeignKey to an Address model
+        # For example, if there’s a `shipping_address` field in the `Order` model:
+
+        return obj.order.shipping_address if obj.order else None

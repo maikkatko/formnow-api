@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'apps.qc',
     'apps.shipping',
     'apps.employees',
-    'apps.dashboard'
+    'apps.dashboard',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
